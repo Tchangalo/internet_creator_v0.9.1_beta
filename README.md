@@ -22,6 +22,7 @@ pip3 install -U setuptools wheel scp ansible paramiko flask flask-socketio gunic
 Nach dem Clonen dieses Repos den Ordner streams aus dem Ordner internet_creator_v0.9.1_beta herausnehmen und in den Pfad /home/user/ des PVE-Hosts ablegen und dann von da aus arbeiten.
 
 Die automatische Erstellung des Vyos Cloud Init Images findet auf dem DHCP-Server statt. Das funktioniert nur, wenn der Server in der Weise aufgesetzt worden ist, die im Setup.pdf beschrieben wird. Konkret bedeutet das, dass die SSH-Schlüssel zwischen dem PVE-User und dem DHCP-Server-User ausgetauscht werden und das Skript dhcp_configure.sh ausgeführt wird. Für alle, deren PVE-User nicht user heißt: Unbedingt das Skript useradd.sh (als root) laufen lassen. Das spart nicht nur eine Menge Arbeit (vgl. Beschreibung und Gebrauchshinweise zum INC v0.9.1_beta.pdf Anmerkung (4)), sondern ist auch Voraussetzung dafür, dass das Skript dhcp_configure.sh funktioniert.
+Für alle, die andere IPs für ihre PVEs verwenden, als hier unter Setup.pdf ganz am Anfang angegeben: Die PVE-IP im dhcp_configure.sh anpassen. Wird bald geändert, sodass man das eingeben kann.
 
 Der Internet Creator wird folgendermaßen aufgerufen:
 
