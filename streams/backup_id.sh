@@ -16,10 +16,10 @@ fi
 echo -e "${C}Backing up VM $vm_id${NC}"
 
 if [[ $(df -T / | awk 'NR==2 {print $2}') == "zfs" ]]; then
-		sudo mkdir /var/lib/vz/dump
+	sudo mkdir /var/lib/vz/dump
     	sudo vzdump $vm_id --dumpdir /var/lib/vz/dump --mode snapshot --compress 0
-	else
-		sudo mkdir /var/lib/pve/local-btrfs/dump
+else
+	sudo mkdir /var/lib/pve/local-btrfs/dump
         sudo vzdump $vm_id --dumpdir /var/lib/pve/local-btrfs/dump --mode snapshot --compress 0
 fi  
 
