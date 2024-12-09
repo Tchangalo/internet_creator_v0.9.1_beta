@@ -18,12 +18,12 @@ then
     vmid=${provider}0${provider}0$(printf '%02d' $router)
     mgmtmac=00:24:18:A${provider}:$(printf '%02d' $router):00
 
-    #destroy
+    # Destroy
     echo -e "${C}Stopping and destroying router $vmid (if exists)${NC}"
     qm stop $vmid || true
     qm destroy $vmid || true
 
-    #create
+    # Create
     echo -e "${C}Creating router $vmid${NC}"
     qm create $vmid --name "p${provider}r${router}v" --ostype l26 --memory 1664 --balloon 1664 --cpu cputype=host --cores 4 --scsihw virtio-scsi-single --net0 virtio,bridge=vmbr1001,macaddr="${mgmtmac}"
     qm importdisk $vmid vyos-1.5.0-cloud-init-10G-qemu.qcow2 local-zfs
@@ -49,8 +49,8 @@ then
         qm set $vmid --net${net} virtio,bridge=vmbr${provider},tag=${vlanid},macaddr=00:${provider}4:18:F${provider}:$(printf '%02d' $router):$(printf '%02d' $net)
     done
 
-    #import cloud-init-ISO
-	echo -e "${C}Importing cloud-init-ISO for router $vmid${NC}"
+    # Import seed.iso
+	echo -e "${C}Importing seed.iso for router $vmid${NC}"
     qm set $vmid --ide2 media=cdrom,file=local:iso/seed.iso
     #qm set $vmid --onboot 1
 fi
