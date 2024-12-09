@@ -19,18 +19,18 @@ if [[ $(df -T / | awk 'NR==2 {print $2}') == "zfs" ]]
 	then
 		sudo mkdir /var/lib/vz/dump
         for i in $(seq $first_router $last_router); do  
-			vmid=${provider}0${provider}0$(printf '%02d' $i)
-			echo -e "${C}Backing up router ${vmid}${NC}"
+		vmid=${provider}0${provider}0$(printf '%02d' $i)
+		echo -e "${C}Backing up router ${vmid}${NC}"
     		sudo vzdump ${provider}0${provider}00$i --dumpdir /var/lib/vz/dump --mode snapshot --compress 0
-			sleep 5
+		sleep 5
     	done
 	else
 		sudo mkdir /var/lib/pve/local-btrfs/dump
 		for i in $(seq $first_router $last_router); do 
-			vmid=${provider}0${provider}0$(printf '%02d' $i)
-			echo -e "${C}Backing up router ${vmid}${NC}"
-			sudo vzdump ${provider}0${provider}00$i --dumpdir /var/lib/pve/local-btrfs/dump --mode snapshot --compress 0
-			sleep 5
+		vmid=${provider}0${provider}0$(printf '%02d' $i)
+		echo -e "${C}Backing up router ${vmid}${NC}"
+		sudo vzdump ${provider}0${provider}00$i --dumpdir /var/lib/pve/local-btrfs/dump --mode snapshot --compress 0
+		sleep 5
     	done
 fi  
 
